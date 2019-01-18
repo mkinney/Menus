@@ -89,3 +89,5 @@ repeat (array_len) {
 	menu_option[i] = 0;
 	i++;
 }
+
+inputting = false;

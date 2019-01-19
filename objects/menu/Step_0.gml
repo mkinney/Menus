@@ -22,10 +22,35 @@ if (inputting) {
 			break;
 			
 		case menu_element_type.slider:
+		
+			switch (menu_option[page]) {
+				
+				case 0:
+					if (! audio_is_playing(sound_background)) {
+						audio_play_sound(sound_background, 1, false);
+					}
+					break;
+					
+				case 1:
+					if (! audio_is_playing(sound_menu_selection)) {
+						audio_play_sound(sound_menu_selection, 1, false);
+					}
+					break;
+					
+				case 2:
+					if (! audio_is_playing(sound_beep)) {
+						audio_play_sound(sound_beep, 1, false);
+					}
+					break;
+					
+			}
+		
 			var hinput = keyboard_check(global.key_right) - keyboard_check(global.key_left);
 			if (hinput != 0) {
 				ds_grid[# 3, menu_option[page]] += hinput * 0.01;
 				ds_grid[# 3, menu_option[page]] = clamp(ds_grid[# 3, menu_option[page]], 0, 1);
+				// change sound when they change the setting
+				script_execute(ds_grid[# 2, menu_option[page]], ds_grid[# 3, menu_option[page]]);
 			}
 			break;
 			
